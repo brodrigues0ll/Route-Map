@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "route_map",
+    "name": "Route Map",
     "slug": "route_map",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.brodrigues0ll.route_map"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bd7bdcab-65c9-40a4-9aa9-df7a3e721425"
+      }
     }
   }
 }
