@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import AppContext from './appContext';
 
 function AppProvider({ children }) {
-  const [origin, setOrigin] = useState('Macaé, RJ');
-  const [destination, setDestination] = useState('Córrego do Ouro, RJ');
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
   const [rsLitro, setRsLitro] = useState('123');
   const [kmLitro, setKmLitro] = useState(0);
   const [apiDistance, setApiDistance] = useState('0');

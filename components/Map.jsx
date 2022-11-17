@@ -13,24 +13,24 @@ const Map = () => {
   // console.debug(lat);
   // console.debug(long);
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Permission to access location was denied');
-        return;
-      }
+  // useEffect(() => {
+  //   (async () => {
+  //     let { status } = await Location.requestForegroundPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       console.log('Permission to access location was denied');
+  //       return;
+  //     }
 
-      let location = await Location.getCurrentPositionAsync({});
+  //     let location = await Location.getCurrentPositionAsync({});
 
-      setLat(location.coords.latitude);
-      setLong(location.coords.longitude);
+  //     setLat(location.coords.latitude);
+  //     setLong(location.coords.longitude);
 
 
 
-    })();
+  //   })();
 
-  }, []);
+  // }, []);
 
 
   return (
@@ -63,6 +63,6 @@ export default Map;
 const styles = StyleSheet.create({
   map: {
     width: '100%',
-    height: '56%',
+    height: '57%',
   },
 });

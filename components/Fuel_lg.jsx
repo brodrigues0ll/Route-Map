@@ -17,7 +17,7 @@ const Fuel_lg = () => {
         onChangeText={(rsLitro) => setRsLitro(Number(rsLitro))}
         keyboardType='numeric'
         style={styles.fuel_lgInput}
-        placeholder='Km / litro'
+        placeholder='R$ / litro'
       />
 
 
