@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import AppContext from "../contexts/appContext";
-import { AUTH_API } from "@env";
 
 const CalcBtn = () => {
   const {
@@ -22,10 +21,10 @@ const CalcBtn = () => {
   const fetchApi = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3002/api/directions?origin=${origin}&destination=${destination}`,
+        `https://route-map-api-brodrigues0ll.vercel.app/api/directions?origin=${origin}&destination=${destination}`,
         {
           headers: {
-            authorization: AUTH_API,
+            authorization: process.env.EXPO_PUBLIC_API_SECRET,
           },
         }
       );
