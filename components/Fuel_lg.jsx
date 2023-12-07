@@ -24,7 +24,7 @@ const Fuel_lg = () => {
       formattedValue = "";
     }
 
-    setRsLitro(Number(formattedValue.replace(",", ".")));
+    setRsLitro(formattedValue);
 
     onChange(formattedValue.replace(",", "."));
   };

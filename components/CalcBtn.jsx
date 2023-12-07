@@ -47,7 +47,9 @@ const CalcBtn = () => {
 
   useEffect(() => {
     if (apiDistance !== "0") {
-      setGasMoney((apiDistance / kmLitro) * rsLitro * 2);
+      setGasMoney(
+        (apiDistance / kmLitro) * Number(rsLitro.replace(",", ".")) * 2
+      );
     }
   }, [btnWasClicked]);
 
