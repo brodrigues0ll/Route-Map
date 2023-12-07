@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import AppContext from "./appContext";
 
 function AppProvider({ children }) {
-  const [origin, setOrigin] = useState("Macaé, RJ");
-  const [destination, setDestination] = useState("Córrego do Ouro, RJ");
-  const [rsLitro, setRsLitro] = useState(5);
-  const [kmLitro, setKmLitro] = useState(11);
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [rsLitro, setRsLitro] = useState("");
+  const [kmLitro, setKmLitro] = useState("");
   const [apiDistance, setApiDistance] = useState("0");
   const [apiTime, setApiTime] = useState("0 h 00 m");
   const [gasMoney, setGasMoney] = useState(0);

@@ -3,11 +3,11 @@ import { Image, StyleSheet, TextInput, View } from "react-native";
 import AppContext from "../contexts/appContext";
 
 const Fuel_lg = () => {
-  const { rsLitro, setRsLitro } = useContext(AppContext);
+  const { setRsLitro, rsLitro } = useContext(AppContext);
 
   const formatCurrency = (rawValue) => {
     // remove os separadores existentes
-    const value = rawValue.replaceAll(".", "").replace(",", "");
+    let value = rawValue.replace(/\./g, "").replace(/,/g, "");
 
     // limita a quantidade de caracteres
     if (value.length > 15) {
@@ -15,7 +15,7 @@ const Fuel_lg = () => {
     }
 
     // formata o valor como moeda brasileira
-    const formattedValue = (+value / 100).toLocaleString("pt-BR", {
+    let formattedValue = (+value / 100).toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
@@ -25,17 +25,13 @@ const Fuel_lg = () => {
     }
 
     setRsLitro(formattedValue);
-
-    onChange(formattedValue.replace(",", "."));
   };
 
-  const handleChange = (event) => {
-    const rawValue = event.target.value;
-
+  const handleChange = (text) => {
     // remove todos os caracteres que não são números, pontos ou vírgulas
-    const filteredValue = rawValue.replace(/[^\d.,]/g, "");
+    const filteredValue = text.replace(/[^\d.,]/g, "");
 
-    formatCurrency(filteredValue);
+    formatCurrency(filteredValue.replace(",", "."));
   };
 
   return (
@@ -46,11 +42,11 @@ const Fuel_lg = () => {
       />
 
       <TextInput
-        style={styles.fuel_lgInput}
         keyboardType="numeric"
+        style={styles.fuel_lgInput}
         placeholder="R$"
-        value={rsLitro}
-        onChange={handleChange}
+        value={rsLitro.toString()}
+        onChangeText={handleChange}
       />
     </View>
   );
