@@ -28,10 +28,7 @@ const LocationBtn = () => {
         const { latitude, longitude } = location.coords;
 
         setOrigin(`${latitude} ${longitude}`);
-
-        setDebug("Latitude: " + latitude + "\nLongitude: " + longitude);
       } catch (error) {
-        setDebug(error.message);
         console.log(error.message);
       }
     };
