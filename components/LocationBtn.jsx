@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import AppContext from "../contexts/appContext";
 import * as Location from "expo-location";
 
@@ -8,31 +8,39 @@ const LocationBtn = () => {
     useContext(AppContext);
 
   useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        console.log("Permission to access location was denied");
-        return;
-      }
+    const getLocation = async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
 
-      let location = await Location.getCurrentPositionAsync({});
+        if (status !== "granted") {
+          console.log("Permission to access location was denied");
+          return;
+        }
 
-      if (locationWasClicked === true) {
-        setOrigin(`${location.coords.latitude} ${location.coords.longitude}`);
+        let location = await Location.getCurrentPositionAsync({});
+        if (locationWasClicked) {
+          setOrigin(`${location.coords.latitude} ${location.coords.longitude}`);
+        }
+      } catch (error) {
+        console.error("Error getting location:", error);
       }
-    })();
+    };
+
+    if (locationWasClicked) {
+      getLocation();
+    }
   }, [locationWasClicked]);
 
-  function handleLocationClick() {
+  const handleLocationClick = () => {
     setLocationWasClicked(true);
 
     setTimeout(() => {
       setLocationWasClicked(false);
     }, 200);
-  }
+  };
 
   return (
-    <TouchableOpacity onPress={() => handleLocationClick()}>
+    <TouchableOpacity onPress={handleLocationClick}>
       <Image
         style={styles.locationImage}
         source={require("../images/location.png")}
@@ -48,9 +56,5 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     resizeMode: "contain",
-    // position: 'absolute',
-    // top: -28,
-    // right: -20,
-    // backgroundColor: 'white',
   },
 });
