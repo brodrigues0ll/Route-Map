@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -34,6 +32,15 @@
       "eas": {
         "projectId": "78772b59-40f4-4273-8144-7bbe9728200c"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "updatesEnabled": true,
+          "isAndroidBackgroundLocationEnabled": true
+        }
+      ]
+    ]
   }
 }

@@ -1,28 +1,21 @@
-import React, { useContext } from 'react';
-import { View } from 'react-native';
-import AppContext from '../contexts/appContext';
+import React, { useContext } from "react";
+import { Text, View } from "react-native";
+import AppContext from "../contexts/appContext";
 
 const Test = () => {
-  const {
-    origin,
-    setOrigin,
-    destination,
-    setDestination,
-    rsLitro,
-    setRsLitro,
-    kmLitro,
-    setKmLitro,
-    apiDistance,
-    gasMoney
-
-  } = useContext(AppContext);
+  const { debug } = useContext(AppContext);
 
   // console.debug('Api Distance = ' + apiDistance + '\n');
 
   return (
-    <View>
-
-    </View>
+    <Text
+      style={{
+        color: "white",
+        paddingLeft: 30,
+      }}
+    >
+      {debug}
+    </Text>
   );
 };
 

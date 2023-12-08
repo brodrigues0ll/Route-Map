@@ -8,7 +8,7 @@ import Fuel_lg from "./components/Fuel_lg";
 import Km from "./components/Km";
 import CalcResult from "./components/CalcResult";
 import CalcMoney from "./components/CalcMoney";
-// import Map from "./components/Map";
+import Test from "./components/Test";
 import AppProvider from "./contexts/appProvider";
 
 export default function App() {
@@ -35,6 +35,8 @@ export default function App() {
 
           <CalcMoney />
         </View>
+
+        <Test />
 
         <StatusBar style="auto" />
       </View>

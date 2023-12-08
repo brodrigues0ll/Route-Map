@@ -1,28 +1,38 @@
 import React, { useContext, useEffect } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import AppContext from "../contexts/appContext";
 import * as Location from "expo-location";
 
 const LocationBtn = () => {
-  const { setOrigin, locationWasClicked, setLocationWasClicked } =
-    useContext(AppContext);
+  const {
+    setOrigin,
+    locationWasClicked,
+    setLocationWasClicked,
+    debug,
+    setDebug,
+  } = useContext(AppContext);
 
   useEffect(() => {
     const getLocation = async () => {
       try {
-        let { status } = await Location.requestForegroundPermissionsAsync();
+        const { granted } = await Location.requestBackgroundPermissionsAsync();
 
-        if (status !== "granted") {
-          console.log("Permission to access location was denied");
-          return;
+        if (!granted) {
+          throw new Error("Location permission not granted");
         }
 
-        let location = await Location.getCurrentPositionAsync({});
-        if (locationWasClicked) {
-          setOrigin(`${location.coords.latitude} ${location.coords.longitude}`);
-        }
+        const location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.High,
+        });
+
+        const { latitude, longitude } = location.coords;
+
+        setOrigin(`${latitude} ${longitude}`);
+
+        setDebug("Latitude: " + latitude + "\nLongitude: " + longitude);
       } catch (error) {
-        console.error("Error getting location:", error);
+        setDebug(error.message);
+        console.log(error.message);
       }
     };
 

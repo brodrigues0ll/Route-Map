@@ -13,6 +13,7 @@ function AppProvider({ children }) {
   const [locationWasClicked, setLocationWasClicked] = useState(false);
   const [markerLat, setMarkerLat] = useState(0);
   const [markerLong, setMarkerLong] = useState(0);
+  const [debug, setDebug] = useState(false);
 
   const contextValue = {
     origin,
@@ -37,6 +38,8 @@ function AppProvider({ children }) {
     setMarkerLat,
     markerLong,
     setMarkerLong,
+    debug,
+    setDebug,
   };
 
   return (
